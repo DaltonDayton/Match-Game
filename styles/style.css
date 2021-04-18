@@ -1,0 +1,15 @@
+#gameBoard {
+  background-color: cadetblue;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  /* display: grid; */
+}
+
+.square {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  outline: 1px solid purple;
+  float: left;
+}
