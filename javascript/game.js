@@ -86,6 +86,11 @@ function generateGameBoard(num) {
     }
   }
 
+  console.log(numCards);
+  if (numCards === 4) {
+    document.getElementById('gameBoard').setAttribute('style', 'width: 200px');
+  }
+
   addSquareEventListener();
 }
 
