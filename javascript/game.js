@@ -1,3 +1,13 @@
+'use strict';
+
+// TODO: Determine when someone wins
+//       If all of the revealed cards are matches, end the game
+//       Clear the board and show a thank you message
+// TODO: Keep track of the number of flip pairs
+//       Create an element that shows you the number of guesses
+//       Add a guess after every two cards are flipped
+// TODO: Update Flip Animation to something better
+
 window.addEventListener('load', () => {
   document.getElementById('startButton').onclick = playNow;
 
@@ -12,9 +22,9 @@ window.addEventListener('load', () => {
 // Starts the game
 function playNow() {
   // Clicked Squares
-  clickedSquares = [];
+  window.clickedSquares = [];
   // Matched Squares
-  matchedSquares = [];
+  window.matchedSquares = [];
 
   var numSymbols = parseInt(document.getElementById('numSymbols').value);
 
@@ -37,7 +47,7 @@ function playNow() {
 
 // Generates the game board and assigns symbols
 function generateGameBoard(num) {
-  numCards = num * 2;
+  window.numCards = num * 2;
   var symbols = ['!', '@', '#', '$', '%', '^', '&', '*'];
 
   // Select the container for the gameboard
@@ -49,7 +59,7 @@ function generateGameBoard(num) {
   gameBox.appendChild(gameBoard);
 
   // Create the squares
-  for (let i = 0; i < numCards; i++) {
+  for (i = 0; i < numCards; i++) {
     var gameSquares = document.createElement('div');
     gameSquares.setAttribute('class', 'square');
     gameSquares.setAttribute('id', i);
@@ -59,7 +69,7 @@ function generateGameBoard(num) {
   // Select random numbers from 1 to numCards
   // Create array and fill with numbers up to card limit
   var cardCountNums = [];
-  for (let i = 0; i < numCards; i++) {
+  for (i = 0; i < numCards; i++) {
     cardCountNums.push(i);
   }
 
@@ -75,7 +85,7 @@ function generateGameBoard(num) {
 
   // Select each symbol twice and insert into the grid
   var cardCounter = 0;
-  for (let i = 1; i < symbols.length + 1; i++) {
+  for (i = 1; i < symbols.length + 1; i++) {
     // breaks out of the loop when max num of symbols is reached
     if (cardCountNums.length == cardCounter) break;
 
@@ -83,7 +93,7 @@ function generateGameBoard(num) {
       cardCountNums[cardCounter]
     ].innerHTML = '<div>' + symbols[i - 1] + '</div>';
     cardCounter++;
-    for (let j = i - 1; j < i; j++) {
+    for (j = i - 1; j < i; j++) {
       document.getElementById('gameBoard').children[
         cardCountNums[cardCounter]
       ].innerHTML = '<div>' + symbols[j] + '</div>';
