@@ -23,6 +23,11 @@ function playNow() {
     numSymbols = 8;
   }
 
+  // Set min to 1
+  if (numSymbols <= 0) {
+    numSymbols = 1;
+  }
+
   // Hide Start Form
   document.getElementById('startForm').style.display = 'none';
 
