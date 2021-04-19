@@ -13,3 +13,11 @@
   outline: 1px solid purple;
   float: left;
 }
+
+.square div {
+  display: none;
+}
+
+.showSquare {
+  display: block !important;
+}
