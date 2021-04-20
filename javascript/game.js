@@ -25,6 +25,11 @@ function playNow() {
 
   var numSymbols = parseInt(document.getElementById('numSymbols').value);
 
+  // If NaN set to random
+  if (isNaN(numSymbols)) {
+    numSymbols = Math.floor(Math.random() * 10);
+  }
+
   // Set max to 8
   if (numSymbols > 8) {
     numSymbols = 8;
