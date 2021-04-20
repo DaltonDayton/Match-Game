@@ -109,14 +109,17 @@ button:hover {
 }
 
 .square div {
-  display: none;
+  opacity: 0;
   margin: auto;
   font-family: 'Original Surfer', cursive;
   font-size: 1.5em;
   font-weight: bold;
   color: var(--offWhite);
+  pointer-events: none;
+  transition: all 0.5s;
 }
 
-.showSquare {
-  display: block !important;
+.square .showSquare {
+  opacity: 1;
+  transition: all 0.5s;
 }

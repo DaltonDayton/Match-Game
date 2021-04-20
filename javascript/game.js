@@ -1,7 +1,5 @@
 'use strict';
 
-// TODO: Update Flip Animation to something better
-
 window.addEventListener('load', () => {
   document.getElementById('startButton').onclick = playNow;
 });
@@ -99,7 +97,6 @@ function generateGameBoard(num) {
     }
   }
 
-  console.log(numCards);
   if (numCards === 4) {
     document.getElementById('gameBoard').setAttribute('style', 'width: 200px');
   }
@@ -118,12 +115,22 @@ function cardFlip(e) {
     }
   }
 
-  // Remove event listener for clicked square to prevent any action on it
-  var squareElem = document.getElementById(e.target.id);
-  console.log(squareElem);
-  var newSquare = squareElem.cloneNode(true);
-  console.log(newSquare);
-  squareElem.parentNode.replaceChild(newSquare, squareElem);
+  // setTimeout to allow the transition to occur
+  setTimeout(() => {
+    // Remove event listener for clicked square to prevent any action on it
+    var squareElem = document.getElementById(e.target.id);
+    console.log(squareElem);
+    var newSquare = squareElem.cloneNode(true);
+    console.log(newSquare);
+    squareElem.parentNode.replaceChild(newSquare, squareElem);
+  }, 250);
+
+  // Increment num of clicks
+  window.numOfClicks++;
+  // Divide clicks by two to get each guess
+  var numOfGuess = Math.floor(numOfClicks / 2);
+  // Add guesses to element
+  document.getElementById('clickCounter').innerText = 'Guesses: ' + numOfGuess;
 
   // If number of active cards is 2: wait 1 second, toggle display, clear cards
   if (clickedSquares.length > 1) {
@@ -160,13 +167,6 @@ function cardFlip(e) {
       }, 500);
     }
   }
-
-  // Increment num of clicks
-  window.numOfClicks++;
-  // Divide clicks by two to get each guess
-  var numOfGuess = Math.floor(numOfClicks / 2);
-  // Add guesses to element
-  document.getElementById('clickCounter').innerText = 'Guesses: ' + numOfGuess;
 }
 
 function addSquareEventListener() {
