@@ -1,8 +1,5 @@
 'use strict';
 
-// TODO: Determine when someone wins
-//       If all of the revealed cards are matches, end the game
-//       Clear the board and show a thank you message
 // TODO: Keep track of the number of flip pairs
 //       Create an element that shows you the number of guesses
 //       Add a guess after every two cards are flipped
@@ -134,7 +131,7 @@ function cardFlip(e) {
 
       // Check for win
       if (matchedSquares.length === numCards) {
-        alert('You win!');
+        win();
       }
 
       // Clear the Array
@@ -178,4 +175,22 @@ function removeSquareEventListener() {
     var newSquare = allSquares[i].cloneNode(true);
     allSquares[i].parentNode.replaceChild(newSquare, allSquares[i]);
   }
+}
+
+function win() {
+  // Hide Game Board
+  var gameBoard = document.getElementById('game');
+  // gameBoard.style.display = 'none';
+  gameBoard.innerHTML = '';
+
+  // Create End Game Screen
+  var endGame = document.createElement('div');
+  var endGameHead = document.createElement('h2');
+  var endGameText = document.createElement('p');
+  endGameHead.innerText = 'You Win!';
+  endGameText.innerText = 'Thank you for playing!';
+  endGame.appendChild(endGameHead);
+  endGame.appendChild(endGameText);
+
+  gameBoard.appendChild(endGame);
 }
