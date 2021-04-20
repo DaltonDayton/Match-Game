@@ -1,19 +1,9 @@
 'use strict';
 
-// TODO: Keep track of the number of flip pairs
-//       Create an element that shows you the number of guesses
-//       Add a guess after every two cards are flipped
 // TODO: Update Flip Animation to something better
 
 window.addEventListener('load', () => {
   document.getElementById('startButton').onclick = playNow;
-
-  // ------- REMOVE -------
-  // default symbol count
-  // document.getElementById('numSymbols').value = 8;
-  // play
-  // playNow();
-  // ----------------------
 });
 
 // Starts the game
@@ -22,6 +12,8 @@ function playNow() {
   window.clickedSquares = [];
   // Matched Squares
   window.matchedSquares = [];
+  // Number of Clicks
+  window.numOfClicks = 0;
 
   var numSymbols = parseInt(document.getElementById('numSymbols').value);
 
@@ -51,6 +43,10 @@ function playNow() {
 function generateGameBoard(num) {
   window.numCards = num * 2;
   var symbols = ['!', '@', '#', '$', '%', '^', '&', '*'];
+
+  var clickCount = document.createElement('div');
+  clickCount.setAttribute('id', 'clickCounter');
+  document.body.children[0].appendChild(clickCount);
 
   // Select the container for the gameboard
   var gameBox = document.getElementById('game');
@@ -122,6 +118,13 @@ function cardFlip(e) {
     }
   }
 
+  // Remove event listener for clicked square to prevent any action on it
+  var squareElem = document.getElementById(e.target.id);
+  console.log(squareElem);
+  var newSquare = squareElem.cloneNode(true);
+  console.log(newSquare);
+  squareElem.parentNode.replaceChild(newSquare, squareElem);
+
   // If number of active cards is 2: wait 1 second, toggle display, clear cards
   if (clickedSquares.length > 1) {
     // Disable ability to click
@@ -157,6 +160,13 @@ function cardFlip(e) {
       }, 500);
     }
   }
+
+  // Increment num of clicks
+  window.numOfClicks++;
+  // Divide clicks by two to get each guess
+  var numOfGuess = Math.floor(numOfClicks / 2);
+  // Add guesses to element
+  document.getElementById('clickCounter').innerText = 'Guesses: ' + numOfGuess;
 }
 
 function addSquareEventListener() {
