@@ -104,6 +104,7 @@ function generateGameBoard(num) {
   addSquareEventListener();
 }
 
+// Handles all actions resulting from the click of a card
 function cardFlip(e) {
   // If number of cards hasn't hit 2, allow a click
   if (clickedSquares.length <= 1) {
@@ -169,6 +170,7 @@ function cardFlip(e) {
   }
 }
 
+// Adds event listeners to each square
 function addSquareEventListener() {
   var allSquares = document.getElementById('gameBoard').children;
   for (let i = 0; i < allSquares.length; i++) {
@@ -184,6 +186,7 @@ function addSquareEventListener() {
   }
 }
 
+// Removes event listeners from each square
 function removeSquareEventListener() {
   var allSquares = document.getElementById('gameBoard').children;
   for (let i = 0; i < allSquares.length; i++) {
@@ -192,6 +195,7 @@ function removeSquareEventListener() {
   }
 }
 
+// Handles actions after a win
 function win() {
   // Hide Game Board
   var gameBoard = document.getElementById('game');
